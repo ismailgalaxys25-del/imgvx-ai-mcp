@@ -1,0 +1,134 @@
+{
+  "author": "ismailgalaxys25-del",
+  "authorUrl": "https://github.com/ismailgalaxys25-del",
+  "cloudEndpoint": "https://imgvx.com/mcp",
+  "description": "ImgVX AI MCP server: finds the right free ImgVX AI browser tool for an image task (background remover, upscaler, object eraser, photo enhancer, compressor, resizer, converters) and returns a link. Hosted at https://imgvx.com/mcp, no API key.",
+  "homepage": "https://imgvx.com",
+  "identifier": "imgvx-ai",
+  "name": "ImgVX AI",
+  "prompts": [],
+  "resources": [],
+  "tools": [
+    {
+      "name": "find_image_tool",
+      "title": "Find an ImgVX AI image tool",
+      "description": "Finds the free ImgVX AI browser tool for an image task the user describes, such as removing a background, upscaling, erasing an object, enhancing or colorizing a photo, compressing to a file size, resizing, cropping or converting HEIC, PNG, JPG, WebP or PDF. Returns matching tools with what each does, its price (most are free) and a link to open it. This tool does not edit images itself: the user opens the link and edits the image in their own browser.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "What the user wants to do to their image, in a few words (e.g. \"remove background\", \"make photo 4x bigger\", \"compress to 100 KB\")."
+          },
+          "language": {
+            "type": "string",
+            "enum": [
+              "es",
+              "pt",
+              "fr",
+              "de",
+              "it",
+              "ru",
+              "tr",
+              "ar",
+              "hi",
+              "id",
+              "vi",
+              "ja",
+              "ko",
+              "zh",
+              "ur",
+              "bn",
+              "fa",
+              "th",
+              "pl",
+              "nl",
+              "uk",
+              "ms",
+              "tl",
+              "sw",
+              "ro",
+              "cs",
+              "el",
+              "hu",
+              "sv",
+              "he",
+              "da",
+              "fi",
+              "no",
+              "bg",
+              "sk",
+              "zh-tw",
+              "ta",
+              "te",
+              "mr",
+              "gu"
+            ],
+            "description": "Optional: the user's language, for a link to the page in that language where one exists."
+          }
+        },
+        "required": [
+          "task"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Find an ImgVX AI image tool",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "list_image_tools",
+      "title": "List ImgVX AI tools",
+      "description": "Lists every ImgVX AI image tool, optionally in one category, with a short description and a link.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "ai",
+              "compress-resize",
+              "adjust",
+              "effects",
+              "edit",
+              "convert",
+              "inspect",
+              "create"
+            ],
+            "description": "Optional category."
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "List ImgVX AI tools",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_pricing",
+      "title": "ImgVX AI pricing",
+      "description": "Returns what is free on ImgVX AI and what Pro and the credit packs cost.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "ImgVX AI pricing",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "version": "1.0.0"
+}

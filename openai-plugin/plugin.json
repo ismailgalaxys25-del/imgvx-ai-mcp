@@ -1,0 +1,96 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "imgvx-ai",
+  "version": "1.0.0",
+  "description": "ImgVX AI finds the right free ImgVX browser tool for an image task (background removal, upscaling, object erasing, photo enhancing, colorizing, compressing, resizing, converting) and returns a link. Images are edited in the user's own browser and are never uploaded.",
+  "author": {
+    "name": "Ismail Farooq",
+    "email": "support@imgvx.com",
+    "url": "https://imgvx.com"
+  },
+  "homepage": "https://imgvx.com/mcp-server/",
+  "repository": "https://github.com/ismailgalaxys25-del/imgvx-ai-mcp",
+  "license": "MIT",
+  "keywords": ["image", "photo", "background remover", "upscaler", "object eraser", "compressor", "converter"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "ImgVX AI",
+        "shortDescription": "Free AI photo tools, private",
+        "longDescription": "ImgVX AI helps you find the right free tool on imgvx.com for something you want to do to an image, and gives you a link to it.\n\nAsk in plain words, for example \"remove the background from my product photo\", \"make this picture 4x bigger\", \"erase the person behind me\", \"compress a photo to under 100 KB\" or \"convert HEIC to JPG\". ImgVX AI answers with the matching tools, what each one does, whether it is free, and a link. It can also list all 87 tools by category and explain the pricing. Links can point to the page in your language for the main tools (40 languages).\n\nOn imgvx.com the editing happens in your own browser: photos are not uploaded, there is no sign-up and no watermark. Most tools are free at full size; the HD AI tools are free up to a size limit, and larger downloads use credits from an optional paid plan.\n\nLimitations: ImgVX AI does not edit images inside ChatGPT and does not receive your images. You open the link and edit the photo on imgvx.com. It does not generate images from text and does not edit faces or people's appearance.",
+        "developerName": "Ismail Farooq",
+        "category": "Productivity",
+        "capabilities": ["Search", "Read"],
+        "websiteURL": "https://imgvx.com",
+        "supportURL": "https://imgvx.com/contact/",
+        "privacyPolicyURL": "https://imgvx.com/privacy/",
+        "termsOfServiceURL": "https://imgvx.com/terms/",
+        "defaultPrompt": [
+          "Remove the background from my product photo",
+          "Make a small image 4x bigger without blur",
+          "Compress a photo to under 100 KB"
+        ],
+        "brandColor": "#7C3AED",
+        "brandColorDark": "#A78BFA",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Finds the background remover for a background task",
+              "prompt": "I need to remove the background from a product photo for my shop",
+              "tools_triggered": "find_image_tool",
+              "expected_behavior": "Returns the ImgVX AI Background Remover first, with a short description, its price and a link to https://imgvx.com/background-remover/."
+            },
+            {
+              "description": "Finds the upscaler for an enlarge task",
+              "prompt": "How can I upscale a small, blurry image to 4x its size?",
+              "tools_triggered": "find_image_tool",
+              "expected_behavior": "Returns the ImgVX AI Image Upscaler with a link to https://imgvx.com/image-upscaler/ and notes that it is free up to a size limit."
+            },
+            {
+              "description": "Returns a page in the user's language",
+              "prompt": "Quiero quitar el fondo de una foto",
+              "tools_triggered": "find_image_tool",
+              "expected_behavior": "Calls find_image_tool with language es and returns the Background Remover with a link to the Spanish page https://imgvx.com/es/background-remover/."
+            },
+            {
+              "description": "Lists tools in one category",
+              "prompt": "What image converters does ImgVX AI have?",
+              "tools_triggered": "list_image_tools",
+              "expected_behavior": "Lists the ImgVX AI convert tools (for example Image Converter, HEIC to JPG, Image to PDF) with a short description and a link for each."
+            },
+            {
+              "description": "Explains pricing",
+              "prompt": "Is ImgVX AI free? What does Pro cost?",
+              "tools_triggered": "get_pricing",
+              "expected_behavior": "Explains that every tool is free with no sign-up or watermark, that HD AI downloads above a size limit use credits, and gives the Pro and credit pack prices with a link to https://imgvx.com/pricing/."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Text-to-image generation is out of scope",
+              "prompt": "Generate a picture of a dragon flying over a city"
+            },
+            {
+              "description": "Questions unrelated to images",
+              "prompt": "What is the weather in London tomorrow?"
+            },
+            {
+              "description": "Writing tasks unrelated to images",
+              "prompt": "Write a cover letter for a marketing job"
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments. It only links to imgvx.com pages."
+      },
+      "publication": {
+        "release_notes": "First version: find_image_tool, list_image_tools and get_pricing."
+      }
+    }
+  }
+}

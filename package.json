@@ -1,0 +1,9 @@
+{
+  "name": "imgvx-ai-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ImgVX AI MCP server: finds the right free ImgVX AI browser tool for an image task (background remover, upscaler, object eraser, photo enhancer, compressor, resizer, converters) and returns a link. Hosted at https://imgvx.com/mcp, no API key.",
+  "homepage": "https://imgvx.com/mcp-server/",
+  "repository": "https://github.com/ismailgalaxys25-del/imgvx-ai-mcp",
+  "license": "MIT"
+}
